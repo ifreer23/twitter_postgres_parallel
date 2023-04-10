@@ -32,14 +32,12 @@ def remove_nulls(s):
     This helper function replaces the null characters with an escaped version so that they can be loaded into postgres.
     Technically, this means the data in postgres won't be an exact match of the data in twitter,
     and there is no way to get the original twitter data back from the data in postgres.
-
     The null character is extremely rarely used in real world text (approx. 1 in 1 billion tweets),
     and so this isn't too big of a deal.
     A more correct implementation, however, would be to *escape* the null characters rather than remove them.
     This isn't hard to do in python, but it is a bit of a pain to do with the JSON/COPY commands for the denormalized data.
     Since our goal is for the normalized/denormalized versions of the data to match exactly,
     we're not going to escape the strings for the normalized data.
-
     >>> remove_nulls('\x00')
     ''
     >>> remove_nulls('hello\x00 world')
@@ -85,7 +83,6 @@ def get_id_urls(url):
 def insert_tweet(connection,tweet):
     '''
     Inserts the tweet into the database.
-
     Args:
         connection: a sqlalchemy connection to the postgresql db
         tweet: a dictionary representing the json tweet object
