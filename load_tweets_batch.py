@@ -347,6 +347,7 @@ def _insert_tweets(connection,input_tweets):
     ######################################## 
     # STEP 2: perform the actual SQL inserts
     ######################################## 
+    connection.commit()
     with connection.begin() as trans:
 
         # use the bulk_insert function to insert most of the data
